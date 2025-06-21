@@ -1,42 +1,131 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@import "tailwindcss";
+@tailwind utilities;
+
+@font-face {
+	font-display: swap;
+	font-family: "Montserrat";
+	font-style: normal;
+	font-weight: 100;
+	src: url("../fonts/montserrat-v29-latin-100.woff2") format("woff2");
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+@font-face {
+	font-display: swap;
+	font-family: "Montserrat";
+	font-style: normal;
+	font-weight: 200;
+	src: url("../fonts/montserrat-v29-latin-200.woff2") format("woff2");
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@font-face {
+	font-display: swap;
+	font-family: "Montserrat";
+	font-style: normal;
+	font-weight: 300;
+	src: url("../fonts/montserrat-v29-latin-300.woff2") format("woff2");
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+@font-face {
+	font-display: swap;
+	font-family: "Montserrat";
+	font-style: normal;
+	font-weight: 400;
+	src: url("../fonts/montserrat-v29-latin-regular.woff2") format("woff2");
 }
 
-.card {
-  padding: 2em;
+@font-face {
+	font-display: swap;
+	font-family: "Montserrat";
+	font-style: normal;
+	font-weight: 500;
+	src: url("../fonts/montserrat-v29-latin-500.woff2") format("woff2");
 }
 
-.read-the-docs {
-  color: #888;
+@font-face {
+	font-display: swap;
+	font-family: "Montserrat";
+	font-style: normal;
+	font-weight: 600;
+	src: url("../fonts/montserrat-v29-latin-600.woff2") format("woff2");
+}
+
+@font-face {
+	font-display: swap;
+	font-family: "Montserrat";
+	font-style: normal;
+	font-weight: 700;
+	src: url("../fonts/montserrat-v29-latin-700.woff2") format("woff2");
+}
+
+@font-face {
+	font-display: swap;
+	font-family: "Montserrat";
+	font-style: normal;
+	font-weight: 800;
+	src: url("../fonts/montserrat-v29-latin-800.woff2") format("woff2");
+}
+
+@font-face {
+	font-display: swap;
+	font-family: "Montserrat";
+	font-style: normal;
+	font-weight: 900;
+	src: url("../fonts/montserrat-v29-latin-900.woff2") format("woff2");
+}
+
+@config "../tailwind.config.ts";
+html,
+body {
+	@apply bg-[#212121] text-white font-sans;
+}
+
+@layer base {
+	:root {
+		--background: 0 0% 13%;
+		--foreground: 210 40% 98%;
+		--text-hover: 0 0% 72%;
+		--card: 0 0% 17%;
+		--card-foreground: 210 40% 98%;
+		--card-secondary: 0 0% 25%;
+		--card-secondary-foreground: 210 40% 98%;
+		--popover: 0 0% 13%;
+		--popover-foreground: 210 40% 98%;
+		--primary: 170 34% 53%;
+		--primary-foreground: 210 40% 98%;
+		--secondary: 217.2 32.6% 17.5%;
+		--secondary-foreground: 210 40% 98%;
+		--muted: 217.2 32.6% 17.5%;
+		--muted-foreground: 215 20.2% 65.1%;
+		--accent: 171 44% 33%;
+		--accent-foreground: 210 40% 98%;
+		--destructive: 0 62.8% 30.6%;
+		--destructive-foreground: 210 40% 98%;
+		--border: 0 0% 17%;
+		--input: 217.2 32.6% 17.5%;
+		--ring: 212.7 26.8% 83.9%;
+		--chart-1: 220 70% 50%;
+		--chart-2: 160 60% 45%;
+		--chart-3: 30 80% 55%;
+		--chart-4: 280 65% 60%;
+		--chart-5: 340 75% 55%;
+		--radius: 0.5rem;
+		--error: 0 88% 68%;
+		--warning: 36 100% 64%;
+		--success: 155 52% 55%;
+		--info: 200 88% 48%;
+	}
+}
+
+@layer base {
+	input:-webkit-autofill,
+	input:-webkit-autofill:hover,
+	input:-webkit-autofill:focus,
+	input:-webkit-autofill:active {
+		-webkit-box-shadow: 0 0 0px 1000px #2b2b2b inset !important;
+		-webkit-text-fill-color: #f8fafc !important;
+		color: #f8fafc !important;
+		caret-color: #f8fafc !important;
+		transition: background-color 9999s ease-in-out 0s,
+			color 9999s ease-in-out 0s;
+	}
 }

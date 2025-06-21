@@ -1,11 +1,11 @@
-import './App.css'
+import "./App.css";
 
 function App() {
-  return (
-    <>
-      <div>Project works</div>
-    </>
-  )
+	return (
+		<>
+			<div className="text-primary">Project works</div>
+		</>
+	);
 }
 
-export default App
+export default App;
