@@ -12,7 +12,7 @@ const tagStyles: Record<
   },
   python: {
     icon: <SiPython className="mr-1" size={16} />,
-    color: "bg-yellow-100 text-yellow-800",
+    color: "bg-blue-200 text-blue-800",
   },
   java: {
     icon: <DiJava className="mr-1" size={16} />,
