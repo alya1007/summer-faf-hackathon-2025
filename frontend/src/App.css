@@ -79,6 +79,13 @@ body {
 	@apply bg-[#212121] text-white font-sans;
 }
 
+html,
+body,
+#root {
+	height: 100%;
+	margin: 0;
+}
+
 @layer base {
 	:root {
 		--background: 0 0% 13%;

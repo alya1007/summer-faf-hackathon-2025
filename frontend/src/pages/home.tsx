@@ -3,11 +3,9 @@ import IssuesList from "../components/issues-list/issues-list";
 
 const Home = () => {
 	return (
-		<div>
-			<div className="flex h-full w-full">
-				<FiltersSection />
-				<IssuesList />
-			</div>
+		<div className="flex flex-1 m-10 gap-10">
+			<FiltersSection />
+			<IssuesList />
 		</div>
 	);
 };
