@@ -10,6 +10,7 @@ function App() {
 		<>
 			<BrowserRouter>
 				<AxiosInterceptorWrapper>
+					<Navbar />
 					<Routes>
 						<Route index element={<Home />} />
 						<Route path="/register" element="<div>lksjdslkd</div>" />
