@@ -93,7 +93,6 @@ const Profile: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-      <Navbar />
 
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
