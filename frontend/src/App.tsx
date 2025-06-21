@@ -4,6 +4,7 @@ import { AxiosInterceptorWrapper } from "./utils/axios";
 import Home from "./pages/home";
 import Profile from "./pages/profile";
 import AuthCallback from "./pages/auth-callback";
+import Navbar from "./components/navbar/navbar";
 
 function App() {
 	return (
