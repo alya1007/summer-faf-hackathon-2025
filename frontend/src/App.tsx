@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import PageLayout from "./routes/page-layout";
 import { AxiosInterceptorWrapper } from "./utils/axios";
 import Home from "./pages/home";
-import Profile from "./pages/profile"
+import Profile from "./pages/profile";
+import AuthCallback from "./pages/auth-callback";
 
 function App() {
 	return (
@@ -14,8 +14,8 @@ function App() {
 						<Route index element={<Home />} />
 						<Route path="/register" element="<div>lksjdslkd</div>" />
 						<Route path="/login" element="<div>login</div>" />
-						<Route path="*" element={<PageLayout />} />
 						<Route path="/profile" element={<Profile />} />
+						<Route path="/auth/callback" element={<AuthCallback />} />
 					</Routes>
 				</AxiosInterceptorWrapper>
 			</BrowserRouter>
