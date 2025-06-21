@@ -9,7 +9,7 @@ const Navbar = () => {
 	};
 
 	return (
-		<nav className="navbar bg-accent flex justify-between items-center p-4">
+		<nav className="navbar bg-accent flex justify-between items-center py-4 px-6">
 			<a href="/">Summer FAF Hackathon 2025</a>
 			<Button variant={"default"} onClick={handleGitHubLogin}>
 				<span> Login with</span>
