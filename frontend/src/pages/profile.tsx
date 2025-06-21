@@ -13,6 +13,13 @@
     avatar_url: string;
   }
 
+  interface Language {
+    id: string;
+    name: string;
+    icon: string;
+    color: string;
+  }
+
   const getToken = () => localStorage.getItem('token');
 
   const getUsername = (token: string): string | null => {
@@ -24,16 +31,39 @@
     }
   };
 
+  const animatedComponents = makeAnimated();
+
+  const options = [
+    { value: 'frontend', label: 'Frontend' },
+    { value: 'backend', label: 'Backend' },
+    { value: 'game_dev', label: 'Game Development' },
+    { value: 'mobile', label: 'Mobile Development' },
+    { value: 'docs', label: 'Documentation' },
+  ];
+
+
+  const languages: Language[] = [
+    { id: 'c#', name: 'C#', icon: '🔧', color: 'bg-gray-700' },
+    { id: 'python', name: 'Python', icon: '🧠', color: 'bg-gray-700' },
+    { id: 'java', name: 'Java', icon: 'C', color: 'bg-blue-600' },
+    { id: 'js', name: 'JS', icon: 'CF', color: 'bg-red-600' },
+    { id: 'go', name: 'Go', icon: '🌀', color: 'bg-green-600' },
+  ];
+
+    
+
   const Profile: React.FC = () => {
-    const [username, setUsername] = useState<string | null>(null);
+    // const [username, setUsername] = useState<string | null>(null);
+    const [username, setUsername] = useState('maria-afteni')
     const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+    const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
 
     useEffect(() => {
-      const token = getToken();
-      if (!token) return;
+      // const token = getToken();
+      // if (!token) return;
 
-      const name = getUsername(token);
-      setUsername(name);
+      // const name = getUsername(token);
+      // setUsername(name);
 
       fetch(`https://api.github.com/users/${username}`)
         .then(res => res.json())
@@ -41,17 +71,21 @@
         .catch(err => console.error('Failed to fetch GitHub profile:', err));
     }, []);
 
-    const animatedComponents = makeAnimated();
+      const toggleLanguage = (languageId: string) => {
+    setSelectedLanguages(prev => 
+      prev.includes(languageId) 
+        ? prev.filter(id => id !== languageId)
+        : [...prev, languageId]
+    );
+  };
 
-    const options = [
-      { value: 'frontend', label: 'Frontend' },
-      { value: 'backend', label: 'Backend' },
-      { value: 'game_dev', label: 'Game Development' },
-      { value: 'mobile', label: 'Mobile Development' },
-      { value: 'docs', label: 'Documentation' },
-    ];
+  const clearAll = () => {
+    setSelectedLanguages([]);
+  };
 
-
+  const selectAll = () => {
+    setSelectedLanguages(languages.map(lang => lang.id));
+  };
 
     return (  
       <div>
@@ -132,7 +166,70 @@
             }),
           }}
       />
+
+<div className="mt-50">
+      <div className="max-w-6xl mx-auto">
+        
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold mb-4">Choose the languages you wish to train on:</h1>
+          <div className="flex gap-4 mb-6">
+            <button
+              onClick={selectAll}
+              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md transition-colors"
+            >
+              Select All
+            </button>
+            <button
+              onClick={clearAll}
+              className="px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded-md transition-colors"
+            >
+              Clear All
+            </button>
+            <div className="flex items-center gap-2">
+              <span className="text-gray-400">Selected:</span>
+              <span className="font-bold text-blue-400">{selectedLanguages.length}</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4 mb-8">
+          {languages.map((language) => (
+            <button
+              key={language.id}
+              onClick={() => toggleLanguage(language.id)}
+              className={`
+                relative p-4 rounded-lg border-2 transition-all duration-200 hover:scale-105 group
+                ${selectedLanguages.includes(language.id)
+                  ? 'border-blue-400 bg-blue-900/30 shadow-lg shadow-blue-500/20'
+                  : 'border-gray-600 bg-gray-800 hover:border-gray-500'
+                }
+              `}
+            >
+              {/* Selection indicator */}
+              {selectedLanguages.includes(language.id) && (
+                <div className="absolute -top-2 -right-2 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                </div>
+              )}
+
+              {/* Language icon */}
+              <div className="flex flex-col items-center space-y-2">
+                <div className={`w-12 h-12 rounded-lg ${language.color} flex items-center justify-center text-white font-bold text-lg group-hover:scale-110 transition-transform`}>
+                  {language.icon}
+                </div>
+                <span className="text-sm font-medium text-center">{language.name}</span>
+              </div>
+            </button>
+          ))}
+        </div>
+      
       </div>
+      </div>
+      </div>
+
+      
     );
   };
   export default Profile;
