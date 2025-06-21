@@ -1,20 +1,24 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/auth-context";
+
+export type User = {
+	username: string;
+	email: string;
+	profile_pic_url: string;
+	pref_langs: string[];
+	pref_domains: string[];
+};
 
 type AuthResponse = {
 	access: string;
 	refresh: string;
-	user: {
-		username: string;
-		email: string;
-		profile_pic_url: string;
-		pref_langs: string[];
-		pref_domains: string[];
-	};
+	user: User;
 };
 
 const AuthCallback = () => {
 	const navigate = useNavigate();
+	const { setUser } = useAuth();
 
 	useEffect(() => {
 		const handleGitHubCallback = async () => {
@@ -34,6 +38,7 @@ const AuthCallback = () => {
 				const data = (await response.json()) as AuthResponse;
 
 				if (response.ok) {
+					setUser(data.user);
 					localStorage.setItem("access_token", data.access);
 					localStorage.setItem("refresh_token", data.refresh);
 					localStorage.setItem(
@@ -56,7 +61,7 @@ const AuthCallback = () => {
 		};
 
 		handleGitHubCallback();
-	}, [navigate]);
+	}, [navigate, setUser]);
 
 	return (
 		<div className="flex items-center justify-center h-screen">
