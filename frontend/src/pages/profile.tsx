@@ -55,20 +55,19 @@ const languages: Language[] = [
   { id: "go", name: "Go", icon: <SiGo className="text-cyan-800" size={36}/> , color: "bg-cyan-100" },
 ];
 
-localStorage.setItem("Langiages", JSON.stringify(languages));
+localStorage.setItem("Languages", JSON.stringify(languages));
 
 const Profile: React.FC = () => {
-  // const [username, setUsername] = useState<string | null>(null);
-  const [username, setUsername] = useState("maria-afteni");
+  const [username, setUsername] = useState<string | null>(null);
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
 
   useEffect(() => {
-    // const token = getToken();
-    // if (!token) return;
+    const token = getToken();
+    if (!token) return;
 
-    // const name = getUsername(token);
-    // setUsername(name);
+    const name = getUsername(token);
+    setUsername(name);
 
     fetch(`https://api.github.com/users/${username}`)
       .then((res) => res.json())
