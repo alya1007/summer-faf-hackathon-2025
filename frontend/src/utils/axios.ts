@@ -5,7 +5,7 @@ import axios, {
 } from "axios";
 import { type ReactNode, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { UserRoleContext } from "../context/UserRoleContext";
+import { UserRoleContext } from "../context/user-role-context";
 
 const api = axios.create({
   baseURL: "http://localhost:5000/api",
@@ -15,7 +15,7 @@ const api = axios.create({
 });
 
 const AxiosInterceptorWrapper = ({ children }: { children: ReactNode }) => {
-  // const userRoleContextProps = useContext(UserRoleContext);
+  const userRoleContextProps = useContext(UserRoleContext);
   const navigate = useNavigate();
 
   const [interceptorsSet, setInterceptorsSet] = useState(false);
@@ -35,8 +35,8 @@ const AxiosInterceptorWrapper = ({ children }: { children: ReactNode }) => {
 
     const errorInterceptor = (error: AxiosError) => {
       if (error.response && error.response.status === 401) {
-        // userRoleContextProps?.setUserRole("");
-        // userRoleContextProps?.setUserCredentials("");
+        userRoleContextProps?.setUserRole("");
+        userRoleContextProps?.setUserCredentials("");
         navigate("/");
       }
       return Promise.reject(error);
@@ -58,7 +58,7 @@ const AxiosInterceptorWrapper = ({ children }: { children: ReactNode }) => {
       api.interceptors.request.eject(reqInterceptor);
       api.interceptors.response.eject(resInterceptor);
     };
-  }, [navigate]);
+  }, [navigate, userRoleContextProps]);
 
   return interceptorsSet && children;
 };
