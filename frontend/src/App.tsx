@@ -13,14 +13,18 @@ function App() {
 			<AuthProvider>
 				<BrowserRouter>
 					<AxiosInterceptorWrapper>
-						<Navbar />
-						<Routes>
-							<Route index element={<Home />} />
-							<Route path="/register" element="<div>lksjdslkd</div>" />
-							<Route path="/login" element="<div>login</div>" />
-							<Route path="/profile" element={<Profile />} />
-							<Route path="/auth/callback" element={<AuthCallback />} />
-						</Routes>
+						<div className="flex flex-col min-h-screen">
+							<Navbar />
+							<div className="flex flex-1 overflow-hidden">
+								<Routes>
+									<Route index element={<Home />} />
+									<Route path="/register" element="<div>lksjdslkd</div>" />
+									<Route path="/login" element="<div>login</div>" />
+									<Route path="/profile" element={<Profile />} />
+									<Route path="/auth/callback" element={<AuthCallback />} />
+								</Routes>
+							</div>
+						</div>
 					</AxiosInterceptorWrapper>
 				</BrowserRouter>
 			</AuthProvider>

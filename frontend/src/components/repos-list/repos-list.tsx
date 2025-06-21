@@ -1,7 +1,6 @@
-import React from "react";
 import Tag from "../ui/tag";
 
-type Repo = {
+export type Repo = {
 	name: string;
 	url: string;
 	stars: number;
@@ -12,20 +11,20 @@ type Repo = {
 };
 
 type ReposListProps = {
-	data: {
-		count: number;
-		next: string | null;
-		previous: string | null;
-		results: Repo[];
-	};
+	repos: Repo[];
 };
 
-const ReposList: React.FC<ReposListProps> = ({ data }) => {
+const ReposList = ({ repos }: ReposListProps) => {
 	return (
-		<div className="flex flex-col gap-4 bg-card p-8 rounded-lg shadow-md flex-1">
+		<div
+			className="flex flex-col gap-4 bg-card p-8 rounded-lg shadow-md overflow-y-auto
+			max-h-[calc(100vh-160px)] text-white scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800
+			hover:scrollbar-thumb-gray-500 transition-all duration-300
+		"
+		>
 			<h2 className="text-lg font-semibold">Repositories List</h2>
 
-			{data.results.map((repo) => (
+			{repos.map((repo: Repo) => (
 				<div
 					key={repo.name}
 					className="bg-gray-800 border border-gray-700 rounded-lg p-4 flex flex-col gap-2"
