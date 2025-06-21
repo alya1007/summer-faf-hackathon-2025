@@ -41,6 +41,7 @@
     { value: 'docs', label: 'Documentation' },
   ];
 
+  localStorage.setItem("Domains", JSON.stringify(options))  
 
   const languages: Language[] = [
     { id: 'c#', name: 'C#', icon: '🔧', color: 'bg-gray-700' },
@@ -49,8 +50,8 @@
     { id: 'js', name: 'JS', icon: 'CF', color: 'bg-red-600' },
     { id: 'go', name: 'Go', icon: '🌀', color: 'bg-green-600' },
   ];
-
-    
+  
+  localStorage.setItem("Langiages", JSON.stringify(languages))
 
   const Profile: React.FC = () => {
     // const [username, setUsername] = useState<string | null>(null);
