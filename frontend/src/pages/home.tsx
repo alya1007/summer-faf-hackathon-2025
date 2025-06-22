@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import FiltersSection from "../components/filter/filters-section";
 import ReposList, { type Repo } from "../components/repos-list/repos-list";
 
@@ -10,44 +11,41 @@ export type ReposResponse = {
 };
 
 const Home = () => {
-	const [repos, setRepos] = useState<Repo[]>([
-		{
-			name: "",
-			url: "",
-			stars: 0,
-			forks: 0,
-			langs: [],
-			domains: [],
-			good_first: false,
-		},
-	]);
+	const [repos, setRepos] = useState<Repo[]>([]);
+	const [searchParams] = useSearchParams();
+
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await fetch(
-					`${import.meta.env.VITE_API_URL}/repos/search/`
-				);
-				if (!response.ok) {
-					throw new Error("Network response was not ok");
-				}
+				const params = new URLSearchParams();
+
+				if (searchParams.get("language"))
+					params.set("language", searchParams.get("language")!);
+				if (searchParams.get("domain"))
+					params.set("domain", searchParams.get("domain")!);
+				if (searchParams.get("good_first"))
+					params.set("good_first", searchParams.get("good_first")!);
+
+				const url = `${
+					import.meta.env.VITE_API_URL
+				}/repos/search/?${params.toString()}`;
+				const response = await fetch(url);
+				if (!response.ok) throw new Error("Network response was not ok");
+
 				const data = (await response.json()) as ReposResponse;
 				setRepos(data.results);
-				console.log(repos);
 			} catch (error) {
 				console.error("Fetch error:", error);
 			}
 		};
 
 		fetchData();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [searchParams]);
 
 	return (
-		<div className="flex flex-1 m-10 gap-10 overflow-hidden">
+		<div className="flex flex-1 m-10 gap-10">
 			<FiltersSection />
-			<div className="flex-1 overflow-hidden">
-				<ReposList repos={repos} />
-			</div>
+			<ReposList repos={repos} />
 		</div>
 	);
 };
