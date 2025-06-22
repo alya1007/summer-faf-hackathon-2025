@@ -114,7 +114,7 @@ const FiltersSection = () => {
 	}, [user]);
 
 	useEffect(() => {
-		const selectedLanguages = searchParams.getAll("language");
+		const selectedLanguages = searchParams.getAll("lang");
 		const selectedDomains = searchParams.getAll("domain");
 
 		if (
@@ -127,7 +127,7 @@ const FiltersSection = () => {
 		) {
 			setLanguage(
 				languageOptions.find((opt) => opt.value === "__my_langs__") ||
-				languageOptions[0]
+					languageOptions[0]
 			);
 		} else {
 			const match = languageOptions.find(
@@ -146,7 +146,7 @@ const FiltersSection = () => {
 		) {
 			setTag(
 				tagOptions.find((opt) => opt.value === "__my_domains__") ||
-				tagOptions[0]
+					tagOptions[0]
 			);
 		} else {
 			const match = tagOptions.find((opt) => opt.value === selectedDomains[0]);
@@ -166,10 +166,10 @@ const FiltersSection = () => {
 
 		if (language.value === "__my_langs__" && user) {
 			user.pref_langs?.forEach((lang: string) =>
-				params.append("language", lang.toLowerCase())
+				params.append("lang", lang.toLowerCase())
 			);
 		} else if (language.value) {
-			params.append("language", language.value);
+			params.append("lang", language.value);
 		}
 
 		if (tag.value === "__my_domains__" && user) {
@@ -234,7 +234,7 @@ const FiltersSection = () => {
 						transform hover:scale-105 transition-all duration-300">
 				Apply Filters
 			</Button>
-		</form >
+		</form>
 	);
 };
 export default FiltersSection;
