@@ -131,7 +131,7 @@ const Profile: React.FC = () => {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <div className="w-full bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:pl-22 pt-12">
         <div className="flex flex-col md:flex-row items-center md:items-start gap-10 mb-2">
           {user && (
@@ -144,13 +144,13 @@ const Profile: React.FC = () => {
           <div>
             <h1 className="text-5xl font-bold text-gray-900 mb-4">
               Welcome back,{" "}
-              <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-purple-300 to-indigo-500 bg-clip-text text-transparent">
                 {user?.username}
               </span>
               !
             </h1>
             <div className="mt-6 flex justify-start">
-              <div className="h-1 w-24 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full"></div>
+              <div className="h-1 w-24 bg-gradient-to-r from-purple-400 to-indigo-500 rounded-full"></div>
             </div>
 
             <div className="max-w-4xl pl-4 sm:pl-6 lg:pl-10 py-12">
@@ -189,7 +189,7 @@ const Profile: React.FC = () => {
           <div className="flex flex-wrap mx-auto gap-4 mb-8 mt-8">
             <button
               onClick={selectAll}
-              className="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl font-semibold hover:from-blue-600 hover:to-blue-700 transition-all duration-200 shadow-lg"
+              className="px-6 py-3 bg-gradient-to-r from-purple-300 to-indigo-600 text-white rounded-xl font-semibold hover:from-blue-700 hover:bg-indigo-700 transition-all duration-200 shadow-lg"
             >
               Select All
             </button>
@@ -236,7 +236,7 @@ const Profile: React.FC = () => {
       <div className="flex justify-center mt-6">
         <button
           onClick={handleSubmit}
-          className="px-8 py-3 bg-gradient-to-r from-green-500 to-blue-500 text-white my-15 rounded-xl font-semibold hover:from-green-600 hover:to-blue-600 transition-all duration-200 shadow-md hover:shadow-xl"
+          className="px-8 py-3 bg-gradient-to-r from-purple-400 to-indigo-600 text-white mt-15 rounded-xl font-semibold hover:from-purple-500 hover:to-indigo-700 transition-all duration-200 shadow-md hover:shadow-xl"
         >
           Save Preferences
         </button>

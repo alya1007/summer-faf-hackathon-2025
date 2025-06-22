@@ -14,7 +14,7 @@ const Navbar = () => {
 	const { user } = useAuth();
 
 	return (
-		<nav className="sticky top-0 z-50 bg-gradient-to-br from-purple-600 to-blue-600 ">
+		<nav className="sticky top-0 z-50 bg-gradient-to-r from-indigo-500 to-indigo-700 ">
 			<div className="px-4 sm:px-6 lg:px-20">
 				<div className="flex items-center justify-between h-16 ">
 			<Link to="/" className="group font-bold text-2xl text-white font-[Apple Color Emoji]">ContributeIT</Link>
@@ -23,7 +23,7 @@ const Navbar = () => {
 			) : (
 				<Button onClick={handleGitHubLogin}
 				className="group relative overflow-hidden
-						bg-gradient-to-r from-purple-300 to-blue-300 text-black text-base hover:from-gray-800 hover:to-gray-700
+						bg-gradient-to-r from-indigo-200 to-indigo-400 text-black text-base hover:from-gray-800 hover:to-gray-700
 						hover:text-white font-semibold
 						px-6 py-2.5 rounded-xl
 						shadow-lg hover:shadow-xl

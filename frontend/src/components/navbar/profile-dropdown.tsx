@@ -30,14 +30,20 @@ const ProfileDropdown = ({ user, onLogout }: ProfileDropdownProps) => {
 		<div className="relative" ref={dropdownRef}>
 			<button
 				onClick={() => setOpen(!open)}
-				className="flex items-center space-x-2 px-4 hover:cursor-pointer py-2 hover:bg-primary/80 bg-primary  rounded-lg transition"
+				className="group flex items-center overflow-hidden 
+						bg-gradient-to-r from-purple-200 to-indigo-400 text-black text-base hover:from-gray-800 hover:to-gray-700
+						hover:text-white font-semibold
+						px-4 py-1 rounded-xl
+						shadow-lg hover:shadow-xl
+						border border-gray-700 hover:border-gray-600
+						transform hover:scale-105 transition-all duration-300"
 			>
 				<img
 					src={user.profile_pic_url}
 					alt="avatar"
-					className="w-8 h-8 rounded-full object-cover"
+					className="w-9 h-9 rounded-full object-cover mr-2"
 				/>
-				<span className="font-medium text-white">{user.username}</span>
+				<span className="font-medium">{user.username}</span>
 			</button>
 
 			{open && (
@@ -50,15 +56,18 @@ const ProfileDropdown = ({ user, onLogout }: ProfileDropdownProps) => {
 						>
 							Profile
 						</Link>
+						<div className="hover:bg-gray-100">
 						<button
 							onClick={() => {
 								setOpen(false);
 								onLogout();
 							}}
-							className="px-4 py-2 hover:bg-gray-100 text-sm text-left text-red-600 font-bold hover:cursor-pointer"
+							
+							className="px-4 py-2 bg-gradient-to-r from-purple-400 to-indigo-600 bg-clip-text text-transparent text-sm text-left font-bold hover:cursor-pointer "
 						>
 							Logout
 						</button>
+						</div>
 					</div>
 				</div>
 			)}
