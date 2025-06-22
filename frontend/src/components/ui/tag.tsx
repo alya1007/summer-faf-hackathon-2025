@@ -1,6 +1,13 @@
 import React from "react";
-import { SiSharp, SiPython, SiJavascript, SiGo } from "react-icons/si";
-import { DiJava } from "react-icons/di";
+import {
+  SiSharp, SiPython, SiJavascript, SiTypescript, SiRuby,
+  SiHtml5, SiCss3, SiPhp, SiGo, SiCplusplus, SiDart, SiGnubash,
+  SiQt, SiC, SiApple
+} from "react-icons/si";
+import { DiJava, DiWindows } from "react-icons/di";
+import { VscVscode } from "react-icons/vsc";
+
+
 
 const tagStyles: Record<
   string,
@@ -12,7 +19,7 @@ const tagStyles: Record<
   },
   python: {
     icon: <SiPython className="mr-1" size={16} />,
-    color: "bg-blue-200 text-blue-800",
+    color: "bg-blue-200 text-blue-700",
   },
   java: {
     icon: <DiJava className="mr-1" size={16} />,
@@ -26,7 +33,73 @@ const tagStyles: Record<
     icon: <SiGo className="mr-1" size={16} />,
     color: "bg-cyan-100 text-cyan-800",
   },
+  typescript: {
+    icon: <SiTypescript className="mr-1" size={16} />,
+    color: "bg-blue-100 text-blue-900",
+  },
+  ruby: {
+    icon: <SiRuby className="mr-1" size={16}/>,
+    color: "bg-red-200 text-red-900",
+  },
+  html:{
+    icon: <SiHtml5 className="mr-1" size={16}/>,
+    color: "bg-orange-200 text-orange-900",
+  }, 
+  css: {
+    icon: <SiCss3 className="mr-1" size={16}/>,
+    color: "bg-purple-200 text-purple-900",
+  }, 
+  php: {
+    icon: <SiPhp className="mr-1" size={16}/>,
+    color: "bg-purple-100 text-purple-800",
+  },
+  "c++": {
+    icon: <SiCplusplus className="mr-1" size={16} />,
+    color: "bg-indigo-100 text-indigo-800",
+  },
+  dart: {
+    icon: <SiDart className="mr-1" size={16} />,
+    color: "bg-cyan-200 text-cyan-900",
+  },
+  assembly: {
+    icon: <SiGnubash className="mr-1" size={16} />,
+    color: "bg-gray-300 text-gray-900",
+  },
+  shell: {
+    icon: <SiGnubash className="mr-1" size={16} />,
+    color: "bg-green-100 text-green-800",
+  },
+  vbnet: {
+    icon: <VscVscode className="mr-1" size={16} />,
+    color: "bg-indigo-200 text-indigo-900",
+  },
+  qmake: {
+    icon: <SiQt className="mr-1" size={16} />,
+    color: "bg-green-200 text-green-900",
+  },
+  c: {
+    icon: <SiC className="mr-1" size={16} />,
+    color: "bg-blue-50 text-blue-800",
+  },
+  "objective-c": {
+    icon: <SiC className="mr-1" size={16} />,
+    color: "bg-gray-100 text-gray-900",
+  },
+  "objective-c++": {
+    icon: <SiCplusplus className="mr-1" size={16} />,
+    color: "bg-gray-200 text-gray-900",
+  },
+  nsis: {
+    icon: <DiWindows className="mr-1" size={16} />,
+    color: "bg-blue-100 text-blue-900",
+  },
+  makefile: {
+    icon: <SiGnubash className="mr-1" size={16} />,
+    color: "bg-gray-200 text-gray-800",
+  },
 };
+
+
 
 
 interface TagProps {
