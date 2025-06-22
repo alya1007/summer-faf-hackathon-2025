@@ -190,7 +190,7 @@ const FiltersSection = () => {
 	return (
 		<form
 			onSubmit={handleSubmit}
-			className="flex flex-col gap-4 bg-gradient-to-br from-purple-600 to-blue-600 p-8 rounded-lg shadow-md min-w-80 max-h-[calc(100vh-160px)] text-white"
+			className="flex flex-col gap-4 bg-gradient-to-r from-indigo-500 to-indigo-700  p-8 rounded-lg shadow-md min-w-80 max-h-[calc(100vh-160px)] text-white"
 		>
 			<h2 className="text-lg font-semibold">Filters</h2>
 
@@ -224,7 +224,14 @@ const FiltersSection = () => {
 				/>
 			</div>
 
-			<Button type="submit" className=" mt-4">
+			<Button type="submit" 
+			className="group relative overflow-hidden
+						bg-gradient-to-r from-purple-200 to-indigo-400 text-black text-base hover:from-gray-500 hover:to-gray-400
+						hover:text-white font-semibold
+						px-6 py-5 rounded-xl my-3
+						shadow-lg hover:shadow-xl
+						border border-gray-700 hover:border-gray-600
+						transform hover:scale-105 transition-all duration-300">
 				Apply Filters
 			</Button>
 		</form >

@@ -17,12 +17,12 @@ type ReposListProps = {
 const ReposList = ({ repos }: ReposListProps) => {
 	return (
 		<div
-			className="flex flex-col gap-4 bg-gradient-to-br from-purple-600 to-blue-600 p-8 rounded-lg shadow-md overflow-y-auto
+			className="flex flex-col gap-4 bg-gradient-to-r from-indigo-500 to-indigo-700 bg-opacity-75 p-8 rounded-lg shadow-md overflow-y-auto
 			max-h-[calc(100vh-160px)] text-white scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800
 			hover:scrollbar-thumb-gray-500 transition-all duration-300 w-full
 		"
 		>
-			<h2 className="text-lg font-semibold">Repositories List</h2>
+			<h2 className="text-lg font-bold font-9xl">Repositories List</h2>
 
 			{repos.map((repo: Repo) => (
 				<div
