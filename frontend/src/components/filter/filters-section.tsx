@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import Select from "react-select";
 import { Button } from "../ui/button";
+import { useAuth } from "../../context/auth-context";
 
 const beginnerFriendlyOptions = [
 	{ value: "", label: "All" },
@@ -48,6 +49,8 @@ type FilterList = {
 const FiltersSection = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
 
+	const { user } = useAuth();
+
 	const [languageOptions, setLanguageOptions] = useState<
 		{ value: string; label: string }[]
 	>([{ value: "", label: "All" }]);
@@ -71,6 +74,7 @@ const FiltersSection = () => {
 				if (!response.ok)
 					throw new Error("Failed to fetch languages and domains");
 				const data = (await response.json()) as FilterList;
+
 				const langs = data.pref_langs.map((lang) => ({
 					value: lang.toLowerCase(),
 					label: lang.charAt(0).toUpperCase() + lang.slice(1),
@@ -81,39 +85,104 @@ const FiltersSection = () => {
 					label: domain.charAt(0).toUpperCase() + domain.slice(1),
 				}));
 
-				setLanguageOptions([{ value: "", label: "All" }, ...langs]);
-				setTagOptions([{ value: "", label: "All" }, ...domains]);
+				const myLangsOption =
+					user && data.pref_langs.length > 0
+						? [{ value: "__my_langs__", label: "My Languages" }]
+						: [];
+				const myDomainsOption =
+					user && data.pref_domains.length > 0
+						? [{ value: "__my_domains__", label: "My Domains" }]
+						: [];
+
+				setLanguageOptions([
+					{ value: "", label: "All" },
+					...myLangsOption,
+					...langs,
+				]);
+				setTagOptions([
+					{ value: "", label: "All" },
+					...myDomainsOption,
+					...domains,
+				]);
 			} catch (error) {
 				console.error("Error fetching languages and domains:", error);
 			}
 		};
 
 		fetchLanguagesAndDomains();
-	}, []);
+	}, [user]);
 
 	useEffect(() => {
-		setLanguage(
-			languageOptions.find(
-				(opt) => opt.value === searchParams.get("language")
-			) || languageOptions[0]
-		);
-		setTag(
-			tagOptions.find((opt) => opt.value === searchParams.get("domain")) ||
-				tagOptions[0]
-		);
+		const selectedLanguages = searchParams.getAll("language");
+		const selectedDomains = searchParams.getAll("domain");
+
+		if (
+			user &&
+			selectedLanguages.length > 0 &&
+			user.pref_langs &&
+			selectedLanguages.every((lang) =>
+				user.pref_langs.includes(lang.toLowerCase())
+			)
+		) {
+			setLanguage(
+				languageOptions.find((opt) => opt.value === "__my_langs__") ||
+					languageOptions[0]
+			);
+		} else {
+			const match = languageOptions.find(
+				(opt) => opt.value === selectedLanguages[0]
+			);
+			setLanguage(match || languageOptions[0]);
+		}
+
+		if (
+			user &&
+			selectedDomains.length > 0 &&
+			user.pref_domains &&
+			selectedDomains.every((domain) =>
+				user.pref_domains.includes(domain.toLowerCase())
+			)
+		) {
+			setTag(
+				tagOptions.find((opt) => opt.value === "__my_domains__") ||
+					tagOptions[0]
+			);
+		} else {
+			const match = tagOptions.find((opt) => opt.value === selectedDomains[0]);
+			setTag(match || tagOptions[0]);
+		}
+
 		setBeginnerFriendly(
 			beginnerFriendlyOptions.find(
 				(opt) => opt.value === searchParams.get("good_first")
 			) || beginnerFriendlyOptions[0]
 		);
-	}, [searchParams, languageOptions, tagOptions]);
+	}, [searchParams, languageOptions, tagOptions, user]);
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		const params: Record<string, string> = {};
-		if (language.value) params.language = language.value;
-		if (tag.value) params.domain = tag.value;
-		if (beginnerFriendly.value) params.good_first = beginnerFriendly.value;
+		const params = new URLSearchParams();
+
+		if (language.value === "__my_langs__" && user) {
+			user.pref_langs?.forEach((lang: string) =>
+				params.append("language", lang.toLowerCase())
+			);
+		} else if (language.value) {
+			params.append("language", language.value);
+		}
+
+		if (tag.value === "__my_domains__" && user) {
+			user.pref_domains?.forEach((domain: string) =>
+				params.append("domain", domain.toLowerCase())
+			);
+		} else if (tag.value) {
+			params.append("domain", tag.value);
+		}
+
+		if (beginnerFriendly.value) {
+			params.set("good_first", beginnerFriendly.value);
+		}
+
 		setSearchParams(params);
 	};
 
