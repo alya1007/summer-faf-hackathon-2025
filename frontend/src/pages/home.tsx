@@ -19,8 +19,10 @@ const Home = () => {
 			try {
 				const params = new URLSearchParams();
 
-				if (searchParams.get("lang"))
-					params.set("lang", searchParams.get("lang")!);
+				const langValues = searchParams.getAll("lang");
+					langValues.forEach((lang) => {
+					params.append("lang", lang);
+				});
 				if (searchParams.get("domain"))
 					params.set("domain", searchParams.get("domain")!);
 				if (searchParams.get("good_first"))
