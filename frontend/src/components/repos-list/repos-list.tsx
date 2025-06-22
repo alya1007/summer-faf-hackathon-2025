@@ -19,7 +19,7 @@ const ReposList = ({ repos }: ReposListProps) => {
 		<div
 			className="flex flex-col gap-4 bg-card p-8 rounded-lg shadow-md overflow-y-auto
 			max-h-[calc(100vh-160px)] text-white scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800
-			hover:scrollbar-thumb-gray-500 transition-all duration-300
+			hover:scrollbar-thumb-gray-500 transition-all duration-300 w-full
 		"
 		>
 			<h2 className="text-lg font-semibold">Repositories List</h2>
