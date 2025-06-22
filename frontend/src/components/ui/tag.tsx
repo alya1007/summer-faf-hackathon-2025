@@ -18,7 +18,7 @@ const tagStyles: Record<
     icon: <DiJava className="mr-1" size={16} />,
     color: "bg-red-100 text-red-800",
   },
-  js: {
+  javascript: {
     icon: <SiJavascript className="mr-1" size={16} />,
     color: "bg-yellow-200 text-yellow-900",
   },
@@ -30,32 +30,32 @@ const tagStyles: Record<
 
 
 interface TagProps {
-    label: string;
-    onRemove?: () => void;
-  }
-  
-  const Tag: React.FC<TagProps> = ({ label, onRemove }) => {
-    const key = label.toLowerCase();
-    const style = tagStyles[key] || {
-      color: "bg-gray-200 text-gray-800",
-      icon: null,
-    };
-  
-    return (
-      <span
-        className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${style.color}`}
-      >
-        {style.icon}
-        {label}
-        {onRemove && (
-          <button
-            onClick={onRemove}
-            className="ml-2 text-gray-500 hover:text-red-600"
-          >
-            &times;
-          </button>
-        )}
-      </span>
-    );
+  label: string;
+  onRemove?: () => void;
+}
+
+const Tag: React.FC<TagProps> = ({ label, onRemove }) => {
+  const key = label.toLowerCase();
+  const style = tagStyles[key] || {
+    color: "bg-gray-200 text-gray-800",
+    icon: null,
   };
+
+  return (
+    <span
+      className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${style.color}`}
+    >
+      {style.icon}
+      {label}
+      {onRemove && (
+        <button
+          onClick={onRemove}
+          className="ml-2 text-gray-500 hover:text-red-600"
+        >
+          &times;
+        </button>
+      )}
+    </span>
+  );
+};
 export default Tag;  

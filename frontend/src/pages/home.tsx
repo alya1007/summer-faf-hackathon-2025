@@ -20,15 +20,14 @@ const Home = () => {
 				const params = new URLSearchParams();
 
 				if (searchParams.get("language"))
-					params.set("language", searchParams.get("language")!);
+					params.set("lang", searchParams.get("language")!);
 				if (searchParams.get("domain"))
 					params.set("domain", searchParams.get("domain")!);
 				if (searchParams.get("good_first"))
 					params.set("good_first", searchParams.get("good_first")!);
 
-				const url = `${
-					import.meta.env.VITE_API_URL
-				}/repos/search/?${params.toString()}`;
+				const url = `${import.meta.env.VITE_API_URL
+					}/repos/search/?${params.toString()}`;
 				const response = await fetch(url);
 				if (!response.ok) throw new Error("Network response was not ok");
 
