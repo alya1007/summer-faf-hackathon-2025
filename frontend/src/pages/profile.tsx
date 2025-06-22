@@ -200,8 +200,8 @@ const Profile: React.FC = () => {
               key={language.id}
               onClick={() => toggleLanguage(language.id)}
               className={`relative p-4 rounded-lg border-2 transition-all duration-200 hover:scale-105 group shadow-xl ${selectedLanguages.includes(language.id)
-                  ? "border-purple-400 bg-gradient-to-br from-purple-50 to-blue-50 shadow-purple-200"
-                  : "border-gray-200 bg-white hover:border-purple-300"
+                ? "border-purple-400 bg-gradient-to-br from-purple-50 to-blue-50 shadow-purple-200"
+                : "border-gray-200 bg-white hover:border-purple-300"
                 }`}
             >
               <div className="flex flex-col items-center space-y-2">
