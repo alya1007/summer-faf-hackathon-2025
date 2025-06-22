@@ -3,33 +3,12 @@ import { useSearchParams } from "react-router-dom";
 import Select from "react-select";
 import { Button } from "../ui/button";
 
-const languageOptions = [
-	{ value: "", label: "All" },
-	{ value: "", label: "My Languages" },
-	{ value: "js", label: "JS" },
-	{ value: "c#", label: "C#" },
-	{ value: "python", label: "Python" },
-	{ value: "java", label: "Java" },
-	{ value: "go", label: "Go" },
-];
-
-const tagOptions = [
-	{ value: "", label: "All" },
-	{ value: "", label: "My Domains" },
-	{ value: "frontend", label: "Frontend" },
-	{ value: "backend", label: "Backend" },
-	{ value: "game", label: "Game Development" },
-	{ value: "mobile", label: "Mobile Development" },
-	{ value: "docs", label: "Documentation" },
-];
-
 const beginnerFriendlyOptions = [
 	{ value: "", label: "All" },
 	{ value: "true", label: "Beginner friendly" },
 	{ value: "false", label: "Not beginner friendly" },
 ];
 
-// Dark theme styles for react-select
 const darkSelectStyles = {
 	control: (base: any) => ({
 		...base,
@@ -61,14 +40,56 @@ const darkSelectStyles = {
 	}),
 };
 
+type FilterList = {
+	pref_langs: string[];
+	pref_domains: string[];
+};
+
 const FiltersSection = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
+
+	const [languageOptions, setLanguageOptions] = useState<
+		{ value: string; label: string }[]
+	>([{ value: "", label: "All" }]);
+
+	const [tagOptions, setTagOptions] = useState<
+		{ value: string; label: string }[]
+	>([{ value: "", label: "All" }]);
 
 	const [language, setLanguage] = useState(languageOptions[0]);
 	const [tag, setTag] = useState(tagOptions[0]);
 	const [beginnerFriendly, setBeginnerFriendly] = useState(
 		beginnerFriendlyOptions[0]
 	);
+
+	useEffect(() => {
+		const fetchLanguagesAndDomains = async () => {
+			try {
+				const response = await fetch(
+					`${import.meta.env.VITE_API_URL}/repos/filters-list/`
+				);
+				if (!response.ok)
+					throw new Error("Failed to fetch languages and domains");
+				const data = (await response.json()) as FilterList;
+				const langs = data.pref_langs.map((lang) => ({
+					value: lang.toLowerCase(),
+					label: lang.charAt(0).toUpperCase() + lang.slice(1),
+				}));
+
+				const domains = data.pref_domains.map((domain) => ({
+					value: domain.toLowerCase(),
+					label: domain.charAt(0).toUpperCase() + domain.slice(1),
+				}));
+
+				setLanguageOptions([{ value: "", label: "All" }, ...langs]);
+				setTagOptions([{ value: "", label: "All" }, ...domains]);
+			} catch (error) {
+				console.error("Error fetching languages and domains:", error);
+			}
+		};
+
+		fetchLanguagesAndDomains();
+	}, []);
 
 	useEffect(() => {
 		setLanguage(
@@ -85,7 +106,7 @@ const FiltersSection = () => {
 				(opt) => opt.value === searchParams.get("good_first")
 			) || beginnerFriendlyOptions[0]
 		);
-	}, [searchParams]);
+	}, [searchParams, languageOptions, tagOptions]);
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
