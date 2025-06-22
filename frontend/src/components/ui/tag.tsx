@@ -2,7 +2,7 @@ import React from "react";
 import {
   SiSharp, SiPython, SiJavascript, SiTypescript, SiRuby,
   SiHtml5, SiCss3, SiPhp, SiGo, SiCplusplus, SiDart, SiGnubash,
-  SiQt, SiC, SiApple
+  SiQt, SiC
 } from "react-icons/si";
 import { DiJava, DiWindows } from "react-icons/di";
 import { VscVscode } from "react-icons/vsc";

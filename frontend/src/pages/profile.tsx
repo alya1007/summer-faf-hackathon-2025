@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { SiSharp, SiPython, SiJavascript, SiGo } from "react-icons/si";
@@ -64,7 +64,21 @@ const Profile: React.FC = () => {
   >([]);
 
   const { user } = useAuth();
-
+  useEffect(() => {
+    if (user) {
+      if (user.pref_langs) {
+        setSelectedLanguages(user.pref_langs);
+      }
+  
+      if (user.pref_domains) {
+        const matchedDomains = options.filter((opt) =>
+          user.pref_domains.includes(opt.value)
+        );
+        setSelectedInterests(matchedDomains);
+      }
+    }
+  }, [user]);
+  
   const toggleLanguage = (languageId: string) => {
     setSelectedLanguages((prev) =>
       prev.includes(languageId)
