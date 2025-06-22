@@ -117,7 +117,7 @@ const Profile: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:pl-22 pt-12">
         <div className="flex flex-col md:flex-row items-center md:items-start gap-10 mb-2">
           {user && (
@@ -159,7 +159,7 @@ const Profile: React.FC = () => {
                     )
                   }
                   placeholder="Select your interests"
-                  className="w-full mt-6 text-sm"
+                  className="w-full mt-6 text-sm text-black"
                 />
               </div>
             </div>
