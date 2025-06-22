@@ -17,7 +17,7 @@ type ReposListProps = {
 const ReposList = ({ repos }: ReposListProps) => {
 	return (
 		<div
-			className="flex flex-col gap-4 bg-card p-8 rounded-lg shadow-md overflow-y-auto
+			className="flex flex-col gap-4 bg-gradient-to-br from-purple-600 to-blue-600 p-8 rounded-lg shadow-md overflow-y-auto
 			max-h-[calc(100vh-160px)] text-white scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800
 			hover:scrollbar-thumb-gray-500 transition-all duration-300 w-full
 		"
@@ -27,7 +27,7 @@ const ReposList = ({ repos }: ReposListProps) => {
 			{repos.map((repo: Repo) => (
 				<div
 					key={repo.name}
-					className="bg-gray-800 border border-gray-700 rounded-lg p-4 flex flex-col gap-2"
+					className="bg-white border border-gray-300 rounded-lg p-4 flex flex-col gap-2"
 				>
 					<a
 						href={repo.url}

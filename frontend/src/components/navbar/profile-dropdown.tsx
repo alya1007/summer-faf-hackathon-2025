@@ -41,11 +41,11 @@ const ProfileDropdown = ({ user, onLogout }: ProfileDropdownProps) => {
 			</button>
 
 			{open && (
-				<div className="absolute right-0 mt-2 bg-card-secondary text-white rounded-lg shadow-lg z-50 w-full">
+				<div className="absolute right-0 mt-2 bg-white text-black rounded-lg shadow-lg z-50 w-full">
 					<div className="flex flex-col py-2">
 						<Link
 							to="/profile"
-							className="px-4 py-2 hover:bg-card text-sm font-bold"
+							className="px-4 py-2 hover:bg-gray-100 text-sm font-bold"
 							onClick={() => setOpen(false)}
 						>
 							Profile
@@ -55,7 +55,7 @@ const ProfileDropdown = ({ user, onLogout }: ProfileDropdownProps) => {
 								setOpen(false);
 								onLogout();
 							}}
-							className="px-4 py-2 hover:bg-card text-sm text-left text-red-600 font-bold hover:cursor-pointer"
+							className="px-4 py-2 hover:bg-gray-100 text-sm text-left text-red-600 font-bold hover:cursor-pointer"
 						>
 							Logout
 						</button>

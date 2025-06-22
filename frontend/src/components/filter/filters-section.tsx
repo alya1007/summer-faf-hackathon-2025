@@ -10,34 +10,35 @@ const beginnerFriendlyOptions = [
 	{ value: "false", label: "Not beginner friendly" },
 ];
 
-const darkSelectStyles = {
+const lightSelectStyles = {
 	control: (base: any) => ({
 		...base,
-		backgroundColor: "#1f2937", // Tailwind gray-800
-		borderColor: "#374151", // Tailwind gray-700
-		color: "#f9fafb", // Tailwind gray-50
+		backgroundColor: "#ffffff",
+		borderColor: "#d1d5db",
+		color: "#111827",
 	}),
 	menu: (base: any) => ({
 		...base,
-		backgroundColor: "#1f2937",
+		backgroundColor: "#ffffff",
+		color: "#111827",
 	}),
 	option: (base: any, state: any) => ({
 		...base,
-		backgroundColor: state.isFocused ? "#374151" : "#1f2937",
-		color: "#f9fafb",
+		backgroundColor: state.isFocused ? "#f3f4f6" : "#ffffff",
+		color: "#111827",
 		cursor: "pointer",
 	}),
 	singleValue: (base: any) => ({
 		...base,
-		color: "#f9fafb",
+		color: "#111827",
 	}),
 	input: (base: any) => ({
 		...base,
-		color: "#f9fafb",
+		color: "#111827",
 	}),
 	placeholder: (base: any) => ({
 		...base,
-		color: "#9ca3af",
+		color: "#6b7280",
 	}),
 };
 
@@ -126,7 +127,7 @@ const FiltersSection = () => {
 		) {
 			setLanguage(
 				languageOptions.find((opt) => opt.value === "__my_langs__") ||
-					languageOptions[0]
+				languageOptions[0]
 			);
 		} else {
 			const match = languageOptions.find(
@@ -145,7 +146,7 @@ const FiltersSection = () => {
 		) {
 			setTag(
 				tagOptions.find((opt) => opt.value === "__my_domains__") ||
-					tagOptions[0]
+				tagOptions[0]
 			);
 		} else {
 			const match = tagOptions.find((opt) => opt.value === selectedDomains[0]);
@@ -189,7 +190,7 @@ const FiltersSection = () => {
 	return (
 		<form
 			onSubmit={handleSubmit}
-			className="flex flex-col gap-4 bg-card p-8 rounded-lg shadow-md min-w-80 text-white"
+			className="flex flex-col gap-4 bg-gradient-to-br from-purple-600 to-blue-600 p-8 rounded-lg shadow-md min-w-80 max-h-[calc(100vh-160px)] text-white"
 		>
 			<h2 className="text-lg font-semibold">Filters</h2>
 
@@ -199,7 +200,7 @@ const FiltersSection = () => {
 					options={languageOptions}
 					value={language}
 					onChange={(option) => setLanguage(option!)}
-					styles={darkSelectStyles}
+					styles={lightSelectStyles}
 				/>
 			</div>
 
@@ -209,7 +210,7 @@ const FiltersSection = () => {
 					options={tagOptions}
 					value={tag}
 					onChange={(option) => setTag(option!)}
-					styles={darkSelectStyles}
+					styles={lightSelectStyles}
 				/>
 			</div>
 
@@ -219,14 +220,14 @@ const FiltersSection = () => {
 					options={beginnerFriendlyOptions}
 					value={beginnerFriendly}
 					onChange={(option) => setBeginnerFriendly(option!)}
-					styles={darkSelectStyles}
+					styles={lightSelectStyles}
 				/>
 			</div>
 
-			<Button type="submit" className="mt-4">
+			<Button type="submit" className=" mt-4">
 				Apply Filters
 			</Button>
-		</form>
+		</form >
 	);
 };
 export default FiltersSection;

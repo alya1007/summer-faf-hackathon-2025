@@ -42,7 +42,7 @@ const Home = () => {
 	}, [searchParams]);
 
 	return (
-		<div className="flex flex-1 m-10 gap-10">
+		<div className="flex flex-1 mx-19 my-12 gap-10">
 			<FiltersSection />
 			<ReposList repos={repos} />
 		</div>
